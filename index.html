@@ -225,10 +225,6 @@
 
         /* --- Hero Section --- */
         .hero {
-            /* UPDATED BACKGROUND with image and overlay */
-            background-image: linear-gradient(rgba(13, 27, 42, 0.85), rgba(27, 38, 59, 0.85)), url('https://images.unsplash.com/photo-1579154341079-2029402ac371?q=80&w=2070');
-            background-size: cover;
-            background-position: center;
             color: var(--white);
             min-height: 100vh;
             display: flex;
@@ -237,12 +233,37 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            background-color: var(--primary-color); /* Fallback color */
+        }
+        
+        /* ADDED: Video styling */
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 0;
+        }
+
+        /* ADDED: Overlay for video */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(13, 27, 42, 0.7); /* Dark semi-transparent overlay */
+            z-index: 1;
         }
 
         .hero-content {
-            max-width: 800px;
             position: relative;
-            z-index: 2;
+            z-index: 2; /* Ensures content is above video and overlay */
         }
 
         .hero .subtitle {
@@ -251,7 +272,7 @@
             margin-bottom: 2rem;
             opacity: 0.9;
             line-height: 1.6;
-            min-height: 4.8em; /* Fixed height to prevent layout shift */
+            min-height: 4.8em;
             display: flex;
             align-items: flex-start;
         }
@@ -281,8 +302,7 @@
             position: relative;
             overflow: hidden;
         }
-
-        /* FIXED BUTTON TEXT DISAPPEARING ON HOVER */
+        
         .btn span {
             position: relative;
             z-index: 2;
@@ -308,6 +328,8 @@
         .btn:hover::before {
             left: 100%;
         }
+        
+        /* --- Styles for the rest of the page remain unchanged --- */
 
         /* --- About PI Section --- */
         #pi .pi-container {
@@ -980,6 +1002,10 @@
     </nav>
 
     <header id="home" class="hero">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="./hero.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
         <div class="hero-content fade-in">
             <h1>Cellular Metabolism Lab</h1>
             <p class="subtitle">Investigating the metabolic organization and regulation of cellular processes in cancer and development through cutting-edge research and innovation.</p>
@@ -1124,12 +1150,12 @@
                     <div class="team-card fade-in">
                         <img src="https://via.placeholder.com/150/6c757d/FFFFFF?text=JD" alt="John Doe">
                         <h4>John Doe</h4>
-                        <p>Former Postdoc (2020-2023)</p>
+                        <p>Former Postdoc (2023-2025)</p>
                     </div>
                     <div class="team-card fade-in">
                         <img src="https://via.placeholder.com/150/6c757d/FFFFFF?text=JS" alt="Jane Smith">
                         <h4>Jane Smith</h4>
-                        <p>Former MS Student (2021-2022)</p>
+                        <p>Former MS Student (2022-2023)</p>
                     </div>
                 </div>
             </div>
@@ -1228,7 +1254,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Loading Animation
             const loadingOverlay = document.getElementById('loadingOverlay');
             setTimeout(() => {
                 loadingOverlay.style.opacity = '0';
@@ -1237,7 +1262,6 @@
                 }, 500);
             }, 1000);
 
-            // Navbar scroll effect and mobile menu
             const navbar = document.getElementById('navbar');
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const navMenu = document.getElementById('navMenu');
@@ -1262,7 +1286,6 @@
                 }
             });
 
-            // Scroll animations
             const observerOptions = {
                 threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
@@ -1278,7 +1301,6 @@
                 observer.observe(el);
             });
 
-            // Scroll to top button
             const scrollTopBtn = document.getElementById('scrollTop');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 500) {
@@ -1291,7 +1313,6 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-            // Smooth scrolling for navigation links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -1303,7 +1324,6 @@
                 });
             });
 
-            // Contact Form Handling
             const contactForm = document.getElementById('contactForm');
             contactForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
@@ -1354,7 +1374,6 @@
                 }
             }
 
-            // Typing effect for hero subtitle
             function typeWriter(element, text, speed = 50) {
                 let i = 0;
                 function type() {
