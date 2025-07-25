@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,15 +60,17 @@
         }
 
         /* --- Typography --- */
-        h1, h2, h3 {
+        h1,
+        h2,
+        h3 {
             font-weight: 600;
             letter-spacing: -0.05em;
         }
 
-        h1 { 
+        h1 {
             font-family: 'Bellefair', serif;
-            font-size: clamp(2.8rem, 5vw, 4.2rem); 
-            margin-bottom: 1rem; 
+            font-size: clamp(2.8rem, 5vw, 4.2rem);
+            margin-bottom: 1rem;
             background: linear-gradient(135deg, var(--white) 0%, #e0e0e0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -77,12 +80,17 @@
         }
 
         @keyframes titleGlow {
-            0% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
-            100% { text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(58, 134, 255, 0.3); }
+            0% {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            }
+
+            100% {
+                text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(58, 134, 255, 0.3);
+            }
         }
 
-        h2 { 
-            font-size: clamp(1.8rem, 3vw, 2.5rem); 
+        h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
             color: var(--primary-color);
             margin-bottom: 2.5rem;
             position: relative;
@@ -103,12 +111,17 @@
         }
 
         @keyframes underlineExpand {
-            0% { width: 0; }
-            100% { width: 60px; }
+            0% {
+                width: 0;
+            }
+
+            100% {
+                width: 60px;
+            }
         }
 
-        h3 { 
-            font-size: 1.5rem; 
+        h3 {
+            font-size: 1.5rem;
             color: var(--secondary-color);
             margin-bottom: 1rem;
         }
@@ -160,8 +173,13 @@
         }
 
         @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); }
-            100% { transform: translateY(-100px) rotate(360deg); }
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
         }
 
         /* --- Navigation Bar --- */
@@ -257,7 +275,7 @@
             overflow: hidden;
             background-color: var(--primary-color);
         }
-        
+
         .hero-video {
             position: absolute;
             top: 50%;
@@ -290,8 +308,15 @@
         }
 
         @keyframes heroSlideIn {
-            0% { opacity: 0; transform: translateY(50px); }
-            100% { opacity: 1; transform: translateY(0); }
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero .subtitle {
@@ -305,10 +330,17 @@
         }
 
         @keyframes subtitleFade {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 0.9; transform: translateY(0); }
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 0.9;
+                transform: translateY(0);
+            }
         }
-        
+
         .hero .pi-name {
             font-size: 1.2rem;
             font-weight: 500;
@@ -319,8 +351,13 @@
         }
 
         @keyframes piNameGlow {
-            0% { text-shadow: 0 0 10px rgba(58, 134, 255, 0.5); }
-            100% { text-shadow: 0 0 20px rgba(58, 134, 255, 0.8); }
+            0% {
+                text-shadow: 0 0 10px rgba(58, 134, 255, 0.5);
+            }
+
+            100% {
+                text-shadow: 0 0 20px rgba(58, 134, 255, 0.8);
+            }
         }
 
         .btn {
@@ -345,15 +382,22 @@
         }
 
         @keyframes btnPulse {
-            0%, 100% { box-shadow: 0 4px 15px rgba(58, 134, 255, 0.4); }
-            50% { box-shadow: 0 6px 25px rgba(58, 134, 255, 0.6); }
+
+            0%,
+            100% {
+                box-shadow: 0 4px 15px rgba(58, 134, 255, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 6px 25px rgba(58, 134, 255, 0.6);
+            }
         }
-        
+
         .btn span {
             position: relative;
             z-index: 2;
         }
-        
+
         .btn::before {
             content: '';
             position: absolute;
@@ -361,7 +405,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.5s;
             z-index: 1;
         }
@@ -435,8 +479,13 @@
             z-index: -1;
         }
 
-        .team-card:nth-child(2)::before { background: var(--gradient-2); }
-        .team-card:nth-child(3)::before { background: var(--gradient-3); }
+        .team-card:nth-child(2)::before {
+            background: var(--gradient-2);
+        }
+
+        .team-card:nth-child(3)::before {
+            background: var(--gradient-3);
+        }
 
         .team-card:hover::before {
             opacity: 0.1;
@@ -473,29 +522,41 @@
         }
 
         /* --- Section Backgrounds & Text Overrides --- */
-        #team, #join, #contact {
+        #team,
+        #join,
+        #contact {
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
 
-        #team { 
+        #team {
             background-image: linear-gradient(rgba(13, 27, 42, 0.92), rgba(27, 38, 59, 0.92)), url('https://images.unsplash.com/photo-1554141542-092a55018f77?q=80&w=2070');
         }
-        #join { 
+
+        #join {
             background-image: linear-gradient(rgba(13, 27, 42, 0.88), rgba(27, 38, 59, 0.88)), url('https://images.unsplash.com/photo-1628155930542-16a76a524a73?q=80&w=2070');
         }
-        #contact { 
+
+        #contact {
             background-image: linear-gradient(rgba(13, 27, 42, 0.95), rgba(27, 38, 59, 0.95)), url('https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?q=80&w=2070');
         }
-        
-        #team h2, #team h3, #join h2, #join p, #contact h2 { 
-            color: var(--white); 
-            text-align: center; 
+
+        #team h2,
+        #team h3,
+        #join h2,
+        #join p,
+        #contact h2 {
+            color: var(--white);
+            text-align: center;
         }
-        #team h3 { margin-top: 3rem; }
-        
-        #team .team-card, #contact .contact-card {
+
+        #team h3 {
+            margin-top: 3rem;
+        }
+
+        #team .team-card,
+        #contact .contact-card {
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
@@ -505,37 +566,51 @@
             border-radius: 20px;
             padding: 2rem;
         }
-        
-        #contact .contact-card h3, #contact .contact-card p, #contact .contact-card a { 
-            color: var(--white); 
+
+        #contact .contact-card h3,
+        #contact .contact-card p,
+        #contact .contact-card a {
+            color: var(--white);
         }
-        #contact .contact-card a:hover { 
-            color: var(--accent-color); 
+
+        #contact .contact-card a:hover {
+            color: var(--accent-color);
         }
-        
-        #pi { background: var(--white); }
-        #pi h2, .research-item h3 { text-align: left; }
-        #pi h2::after { left: 0; transform: none; }
-        
-        #research { 
+
+        #pi {
+            background: var(--white);
+        }
+
+        #pi h2,
+        .research-item h3 {
+            text-align: left;
+        }
+
+        #pi h2::after {
+            left: 0;
+            transform: none;
+        }
+
+        #research {
             background: var(--light-gray);
             position: relative;
         }
-        #research .container > p { 
-            max-width: 800px; 
-            margin: 0 auto 3rem auto; 
-            text-align: center; 
+
+        #research .container>p {
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+            text-align: center;
         }
 
-        .research-item { 
+        .research-item {
             background: var(--white);
-            margin-bottom: 2rem; 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 3rem; 
-            align-items: center; 
-            padding: 2.5rem; 
-            border-radius: 20px; 
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            padding: 2.5rem;
+            border-radius: 20px;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
@@ -552,14 +627,15 @@
             background: var(--accent-gradient);
         }
 
-        .research-item:hover { 
-            transform: translateY(-8px) scale(1.02); 
-            box-shadow: var(--shadow-heavy); 
-            z-index: 10; 
+        .research-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-heavy);
+            z-index: 10;
         }
-        .research-figure img { 
-            width: 100%; 
-            height: auto; 
+
+        .research-figure img {
+            width: 100%;
+            height: auto;
             border-radius: 16px;
             transition: all 0.3s ease;
         }
@@ -568,8 +644,8 @@
             transform: scale(1.05);
         }
 
-        #publications { 
-            background: var(--white); 
+        #publications {
+            background: var(--white);
             position: relative;
         }
 
@@ -579,7 +655,7 @@
             margin: 0 auto;
         }
 
-        .publication-list li { 
+        .publication-list li {
             background: var(--white);
             margin-bottom: 1.5rem;
             padding: 2rem;
@@ -678,8 +754,15 @@
         }
 
         @keyframes successFadeIn {
-            0% { opacity: 0; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1); }
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         /* --- Contact Info Grid --- */
@@ -724,10 +807,10 @@
             opacity: 0.3;
         }
 
-        #pi .pi-image img { 
-            width: 100%; 
-            height: 420px; 
-            border-radius: 20px; 
+        #pi .pi-image img {
+            width: 100%;
+            height: 420px;
+            border-radius: 20px;
             object-fit: cover;
             transition: all 0.3s ease;
         }
@@ -746,74 +829,79 @@
         }
 
         /* --- Loading Animation & Mobile Menu --- */
-        .loading-overlay { 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background: var(--primary-color); 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            z-index: 9999; 
-            transition: opacity 0.5s ease; 
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
         }
-        
-        .loading-spinner { 
-            width: 50px; 
-            height: 50px; 
-            border: 4px solid rgba(58, 134, 255, 0.3); 
-            border-top: 4px solid var(--accent-color); 
-            border-radius: 50%; 
-            animation: spin 1s linear infinite; 
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(58, 134, 255, 0.3);
+            border-top: 4px solid var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
-        
-        @keyframes spin { 
-            0% { transform: rotate(0deg); } 
-            100% { transform: rotate(360deg); } 
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
-        
-        .mobile-menu-btn { 
-            display: none; 
-            flex-direction: column; 
-            gap: 4px; 
-            background: none; 
-            border: none; 
-            cursor: pointer; 
-            padding: 8px; 
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
         }
-        
-        .mobile-menu-btn span { 
-            width: 25px; 
-            height: 3px; 
-            background: var(--white); 
-            border-radius: 2px; 
-            transition: all 0.3s ease; 
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: all 0.3s ease;
         }
-        
-        .mobile-menu-btn.active span:nth-child(1) { 
-            transform: rotate(45deg) translate(5px, 5px); 
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
         }
-        
-        .mobile-menu-btn.active span:nth-child(2) { 
-            opacity: 0; 
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
         }
-        
-        .mobile-menu-btn.active span:nth-child(3) { 
-            transform: rotate(-45deg) translate(7px, -6px); 
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
         }
 
         /* --- Animations --- */
-        .fade-in { 
-            opacity: 0; 
-            transform: translateY(30px); 
-            transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1); 
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-        
-        .fade-in.visible { 
-            opacity: 1; 
-            transform: translateY(0); 
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .slide-in-left {
@@ -840,72 +928,88 @@
 
         /* --- Responsive Design --- */
         @media (max-width: 992px) {
-            #pi .pi-container, .research-item { 
-                grid-template-columns: 1fr; 
-                text-align: center; 
+
+            #pi .pi-container,
+            .research-item {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
-            #pi h2, .research-item h3 { 
-                text-align: center; 
+
+            #pi h2,
+            .research-item h3 {
+                text-align: center;
             }
-            #pi h2::after { 
-                left: 50%; 
-                transform: translateX(-50%); 
+
+            #pi h2::after {
+                left: 50%;
+                transform: translateX(-50%);
             }
-            .research-item:nth-child(even) .research-figure { 
-                order: -1; 
+
+            .research-item:nth-child(even) .research-figure {
+                order: -1;
             }
         }
-        
+
         @media (max-width: 768px) {
-            .navbar { 
-                padding: 0.25rem 0; 
+            .navbar {
+                padding: 0.25rem 0;
             }
-            .navbar ul { 
-                position: absolute; 
-                top: 70px; 
-                left: 0; 
-                width: 100%; 
-                background: rgba(0, 51, 102, 0.98); 
-                backdrop-filter: blur(20px); 
-                flex-direction: column; 
-                padding: 1rem 0; 
-                transform: translateY(-200%); 
-                opacity: 0; 
-                visibility: hidden; 
-                transition: transform 0.3s ease, opacity 0.3s ease; 
+
+            .navbar ul {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 51, 102, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 1rem 0;
+                transform: translateY(-200%);
+                opacity: 0;
+                visibility: hidden;
+                transition: transform 0.3s ease, opacity 0.3s ease;
             }
-            .navbar ul.active { 
-                transform: translateY(0); 
-                opacity: 1; 
-                visibility: visible; 
+
+            .navbar ul.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
             }
-            .navbar ul li a { 
-                padding: 1rem 1.5rem; 
-                width: 100%; 
-                text-align: center; 
+
+            .navbar ul li a {
+                padding: 1rem 1.5rem;
+                width: 100%;
+                text-align: center;
             }
-            .mobile-menu-btn { 
-                display: flex; 
+
+            .mobile-menu-btn {
+                display: flex;
             }
-            section { 
-                padding: 4rem 0; 
-                background-attachment: scroll; 
+
+            section {
+                padding: 4rem 0;
+                background-attachment: scroll;
             }
-            h1 { 
-                font-size: 2.2rem; 
+
+            h1 {
+                font-size: 2.2rem;
             }
-            h2 { 
-                font-size: 1.8rem; 
+
+            h2 {
+                font-size: 1.8rem;
             }
+
             .team-grid {
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             }
+
             .contact-form {
                 padding: 2rem;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-spinner"></div>
@@ -939,7 +1043,8 @@
         <div class="particles" id="particles"></div>
         <div class="hero-content fade-in">
             <h1>Cellular Metabolism Lab</h1>
-            <p class="subtitle">Investigating the metabolic organization and regulation of cellular processes in cancer and development through cutting-edge research and innovation.</p>
+            <p class="subtitle">Investigating the metabolic organization and regulation of cellular processes in cancer
+                and development through cutting-edge research and innovation.</p>
             <p class="pi-name">Dr. Vinay Bulusu</p>
             <a href="#research" class="btn">
                 <span>Explore Our Research →</span>
@@ -957,7 +1062,10 @@
                     </div>
                     <div class="pi-info">
                         <h3>Dr. Vinay Bulusu</h3>
-                        <p>I am a biochemist interested in understanding the metabolic organization and regulation of cellular processes in cancer and embryonic development. Our group uses a combination of functional genomics with advanced mass spectrometry, imaging, and computational modelling to understand metabolic cross-talk with signaling and gene transcription networks.</p>
+                        <p>I am a biochemist interested in understanding the metabolic organization and regulation of
+                            cellular processes in cancer and embryonic development. Our group uses a combination of
+                            functional genomics with advanced mass spectrometry, imaging, and computational modelling to
+                            understand metabolic cross-talk with signaling and gene transcription networks.</p>
                     </div>
                 </div>
             </div>
@@ -967,35 +1075,46 @@
             <div class="container">
                 <div class="particles" id="researchParticles"></div>
                 <h2 class="fade-in">Our Research</h2>
-                <p class="fade-in">While the role of thermodynamic and kinetic principles in organizing metabolic reactions are understood, the specific interplay of metabolites and enzymes in modulating signaling and gene transcription is now coming to the fore. We are focused on answering several key questions in this domain.</p>
-                
+                <p class="fade-in">While the role of thermodynamic and kinetic principles in organizing metabolic
+                    reactions are understood, the specific interplay of metabolites and enzymes in modulating signaling
+                    and gene transcription is now coming to the fore. We are focused on answering several key questions
+                    in this domain.</p>
+
                 <div class="research-item fade-in slide-in-left">
                     <div class="research-text">
                         <h3>Metabolic Compartmentalization</h3>
-                        <p>In solid tumors, cancer cells rewire their metabolism to survive nutrient limitation. Our work revealed that under hypoxic conditions, acetyl-CoA pools are compartmentalized, channeling exogenous acetate directly into lipid synthesis, bypassing histone acetylation. We are pursuing further studies to understand such flux barriers.</p>
+                        <p>In solid tumors, cancer cells rewire their metabolism to survive nutrient limitation. Our
+                            work revealed that under hypoxic conditions, acetyl-CoA pools are compartmentalized,
+                            channeling exogenous acetate directly into lipid synthesis, bypassing histone acetylation.
+                            We are pursuing further studies to understand such flux barriers.</p>
                     </div>
                     <div class="research-figure">
-                        <img src="https://i.imgur.com/gK6nF6L.png" alt="Acetyl-CoA compartmentalization">
+                        <img src="./hero1.jpg" alt="Acetyl-CoA compartmentalization">
                     </div>
                 </div>
-                
+
                 <div class="research-item fade-in slide-in-right">
                     <div class="research-figure">
-                        <img src="https://i.imgur.com/uGzJ4iX.png" alt="Metabolite biosensor concept">
+                        <img src="https://www.cell.com/cms/10.1016/j.devcel.2017.01.015/asset/c093631f-b1df-4e3e-904c-100057fe2031/main.assets/fx1_lrg.jpg" alt="Metabolite biosensor concept">
                     </div>
                     <div class="research-text">
                         <h3>Metabolites & Gene Expression</h3>
-                        <p>Metabolites like acetyl-CoA are crucial cofactors for enzymes that modify DNA and chromatin. We are developing novel, genetically encoded fluorescence-based sensors to visualize and understand their sub-cellular dynamics and impact on gene expression in real-time.</p>
+                        <p>Metabolites like acetyl-CoA are crucial cofactors for enzymes that modify DNA and chromatin.
+                            We are developing novel, genetically encoded fluorescence-based sensors to visualize and
+                            understand their sub-cellular dynamics and impact on gene expression in real-time.</p>
                     </div>
                 </div>
-                
+
                 <div class="research-item fade-in slide-in-left">
                     <div class="research-text">
                         <h3>Metabolic Gradients</h3>
-                        <p>Altered metabolism creates metabolic gradients within tumors and developing embryos. We previously demonstrated a glycolytic gradient in the mouse embryo essential for axis elongation. We are dissecting the mechanisms of gradient formation and function in cancer and development.</p>
+                        <p>Altered metabolism creates metabolic gradients within tumors and developing embryos. We
+                            previously demonstrated a glycolytic gradient in the mouse embryo essential for axis
+                            elongation. We are dissecting the mechanisms of gradient formation and function in cancer
+                            and development.</p>
                     </div>
                     <div class="research-figure">
-                        <img src="https://i.imgur.com/YwP5t9L.png" alt="Glycolytic gradient in mouse embryo">
+                        <img src="https://www.cell.com/cms/10.1016/j.devcel.2017.01.015/asset/f4e6d25a-b296-49db-9ea8-b8cf5eac2355/main.assets/gr4_lrg.jpg" alt="Glycolytic gradient in mouse embryo">
                     </div>
                 </div>
             </div>
@@ -1005,7 +1124,7 @@
             <div class="container">
                 <div class="particles" id="teamParticles"></div>
                 <h2 class="fade-in">Meet the Team</h2>
-                
+Figure 1: Acetyl-CoA compartmentalization in hypoxic and lipid deprived cancer cells. Adapted from Bulusu et al. Cell Rep.18(3):647-658 (2017)
                 <h3 class="fade-in">Current Members</h3>
                 <div class="team-grid">
                     <div class="team-card fade-in" style="transition-delay: 100ms;">
@@ -1034,7 +1153,7 @@
                         <p>PhD Scholar</p>
                     </div>
                 </div>
-                
+
                 <h3 class="fade-in">Lab Alumni</h3>
                 <div class="team-grid">
                     <div class="team-card fade-in" style="transition-delay: 100ms;">
@@ -1055,32 +1174,53 @@
             <div class="container">
                 <h2 class="fade-in">Key Publications</h2>
                 <ul class="publication-list">
-                    <li class="fade-in"><a href="https://doi.org/10.21203/rs.3.rs-3303104/v1" target="_blank">
-                        <strong>R Pandey, PK Das, SS Mishra, V Bulusu, M Ramakrishnan</strong>, Revisiting 2-Deoxyglucose Resistance in Neurospora crassa: Insights into Transcriptional Regulation of Hexose Transporters, Sugar Metabolism and Possible Modulation by Mating Type." <em>Research Square</em>, 8(3), 245-258.
+                    <li class="fade-in">
+                        <a href="https://doi.org/10.21203/rs.3.rs-3303104/v1" target="_blank">
+                            <strong>R Pandey, PK Das, SS Mishra, V Bulusu, M Ramakrishnan [2023]</strong>, "Revisiting
+                            2-Deoxyglucose Resistance in Neurospora crassa: Insights into Transcriptional Regulation of
+                            Hexose Transporters, Sugar Metabolism and Possible Modulation by Mating Type." <em>Research
+                                Square</em>
                         </a>
                     </li>
                     <li class="fade-in">
-                        <strong>Ghosh, A., Bulusu, V.</strong> (2023). "Novel biosensors for real-time visualization of acetyl-CoA dynamics." <em>Cell Reports</em>, 42(7), 112456.
+                        <a href="https://www.cell.com/trends/biochemical-sciences/abstract/S0968-0004(22)00065-2"
+                            target="_blank">
+                            <strong>Durga Mahor, Rishikesh Pandey, Vinay Bulusu [2022]</strong>, "TCA cycle off, ATF4 on
+                            for metabolic homeostasis" <em>Trends in Biochemical Sciences</em>
+                        </a>
                     </li>
                     <li class="fade-in">
-                        <strong>Dhabal, D.</strong>, et al. (2023). "Glycolytic gradients in embryonic development: mechanisms and functions." <em>Developmental Cell</em>, 58(12), 1123-1139.
+                        <a href="https://www.cell.com/cell-reports/fulltext/S2211-1247(20)30105-4" target="_blank">
+                            <strong>Evdokia Michalopoulou1, Francesca R. Auciello1, Vinay Bulusu, et. al.
+                                [2020]</strong>, "Macropinocytosis Renders a Subset of Pancreatic Tumor Cells Resistant
+                            to mTOR Inhibition" <em>Cell Reports</em>
+                        </a>
                     </li>
                     <li class="fade-in">
-                        <strong>Saha, S., Bulusu, V.</strong> (2022). "Metabolic rewiring in cancer: therapeutic implications." <em>Nature Reviews Cancer</em>, 22(8), 487-503.
+                        <a href="https://doi.org/10.1158/2159-8290.CD-18-1212" target="_blank">
+                            <strong>Francesca R, Auciello, Vinay Bulusu, et. al. [2019]</strong>, "A Stromal Lysolipid
+                            Autotaxin Signaling Axis Promotes Pancreatic Tumor Progression" <em>Cancer Discovery</em>
+                        </a>
                     </li>
                     <li class="fade-in">
-                        <strong>Manasingh, A.</strong>, et al. (2022). "Chromatin modifications by metabolic enzymes: linking metabolism to gene expression." <em>Science</em>, 376(6590), 245-251.
+                        <a href="https://scholar.google.com/citations?hl=en&user=cUMPtQEAAAAJ&view_op=list_works&sortby=pubdate"
+                            target="_blank">
+                            <strong>Click Here for more</strong>
+                        </a>
                     </li>
                 </ul>
             </div>
         </section>
-        
+
         <section id="join">
             <div class="container">
                 <div class="particles" id="joinParticles"></div>
                 <h2 class="fade-in">Join Our Lab</h2>
-                <p class="fade-in" style="max-width: 800px; margin: 0 auto 3rem auto; font-size: 1.1rem; opacity: 0.9;">We are actively seeking motivated PhD students, Postdoctoral Fellows, and MS Project students. If you are passionate about our research and interested in pushing the boundaries of science, please get in touch using the form below.</p>
-                
+                <p class="fade-in" style="max-width: 800px; margin: 0 auto 3rem auto; font-size: 1.1rem; opacity: 0.9;">
+                    We are actively seeking motivated PhD students, Postdoctoral Fellows, and MS Project students. If
+                    you are passionate about our research and interested in pushing the boundaries of science, please
+                    get in touch using the form below.</p>
+
                 <div class="contact-form fade-in" style="max-width: 700px; margin: 0 auto;">
                     <form id="contactForm">
                         <div class="form-group">
@@ -1090,10 +1230,11 @@
                             <input type="email" id="email" name="email" required placeholder="Email Address *">
                         </div>
                         <div class="form-group">
-                            <input type="text" id="position" name="position" placeholder="Position of Interest (PhD/Postdoc/MS)">
+                            <input type="text" id="position" name="position" required placeholder="Subject">
                         </div>
                         <div class="form-group">
-                            <textarea id="message" name="message" required placeholder="Tell us about your research interests and background..."></textarea>
+                            <textarea id="message" name="message" required
+                                placeholder="Why do you want to reach out to us ?"></textarea>
                         </div>
                         <div class="form-submit">
                             <button type="submit" class="submit-btn" id="submitBtn">
@@ -1120,10 +1261,12 @@
                     <div class="contact-card fade-in">
                         <h3>Laboratory Address</h3>
                         <p><strong>IISER Berhampur</strong></p>
-                        <p>Transit Campus<br>
-                        Government ITI, Govt. Polytechnic Campus<br>
-                        Engineering School Road, Berhampur<br>
-                        Odisha 760010, India</p>
+                        <p> <strong>Transit campus:</strong><br>
+                            IISER Berhampur,<br>
+                            Govt. ITI Premises, NH-59 <br>
+                            Engineering School Junction, <br>
+                            Berhampur, Dist.- Ganjam, Odisha <br>
+                            India-760010,</p>
                     </div>
                 </div>
             </div>
@@ -1135,7 +1278,7 @@
             <p>&copy; 2025 Cellular Metabolism Lab | Dr. Vinay Bulusu | IISER Berhampur. All Rights Reserved.</p>
         </div>
     </footer>
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Loading Animation
@@ -1149,7 +1292,7 @@
             function createParticles(containerId, count = 15) {
                 const container = document.getElementById(containerId);
                 if (!container) return;
-                
+
                 for (let i = 0; i < count; i++) {
                     const particle = document.createElement('div');
                     particle.className = 'particle';
@@ -1197,7 +1340,7 @@
             // Mobile Menu functionality
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const navMenu = document.getElementById('navMenu');
-            
+
             mobileMenuBtn.addEventListener('click', () => {
                 mobileMenuBtn.classList.toggle('active');
                 navMenu.classList.toggle('active');
@@ -1230,10 +1373,10 @@
             const contactForm = document.getElementById('contactForm');
             contactForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                
+
                 const submitBtn = document.getElementById('submitBtn');
                 const formData = new FormData(contactForm);
-                
+
                 const name = formData.get('name').trim();
                 const email = formData.get('email').trim();
                 const position = formData.get('position').trim();
@@ -1274,10 +1417,10 @@ This inquiry was sent from the Cellular Metabolism Lab website.
 
                     // Create mailto link
                     const mailtoLink = `mailto:vbulusu@iiserbpr.ac.in?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-                    
+
                     // Try to open email client
                     window.location.href = mailtoLink;
-                    
+
                     // Show success message after a short delay
                     setTimeout(() => {
                         const contactFormContainer = document.querySelector('.contact-form');
@@ -1299,7 +1442,7 @@ This inquiry was sent from the Cellular Metabolism Lab website.
                 } catch (error) {
                     console.error('Error:', error);
                     alert('There was an error processing your request. Please try again or email us directly at vbulusu@iiserbpr.ac.in');
-                    
+
                     // Reset button state
                     submitBtn.disabled = false;
                     submitBtn.querySelector('span').textContent = 'Send Inquiry ✉';
@@ -1311,7 +1454,7 @@ This inquiry was sent from the Cellular Metabolism Lab website.
             const subtitle = document.querySelector('.hero .subtitle');
             const originalText = subtitle.textContent;
             subtitle.textContent = '';
-            
+
             let i = 0;
             const typeWriter = () => {
                 if (i < originalText.length) {
@@ -1320,14 +1463,14 @@ This inquiry was sent from the Cellular Metabolism Lab website.
                     setTimeout(typeWriter, 50);
                 }
             };
-            
+
             setTimeout(typeWriter, 2000);
 
             // Add parallax effect to research images
             window.addEventListener('scroll', () => {
                 const scrolled = window.pageYOffset;
                 const researchImages = document.querySelectorAll('.research-figure img');
-                
+
                 researchImages.forEach((img, index) => {
                     const rate = scrolled * -0.5;
                     img.style.transform = `translateY(${rate}px)`;
@@ -1339,7 +1482,7 @@ This inquiry was sent from the Cellular Metabolism Lab website.
                 element.addEventListener('mouseenter', () => {
                     element.style.filter = 'brightness(1.1)';
                 });
-                
+
                 element.addEventListener('mouseleave', () => {
                     element.style.filter = 'brightness(1)';
                 });
@@ -1366,4 +1509,5 @@ This inquiry was sent from the Cellular Metabolism Lab website.
         });
     </script>
 </body>
+
 </html>
