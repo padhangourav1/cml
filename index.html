@@ -341,19 +341,6 @@
             }
         }
 
-        /* ...existing code... */
-        .research-figure img {
-            width: 260px !important;
-            height: 260px !important;
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
-            border-radius: 16px;
-            display: block;
-            margin: 0 auto;
-        }
-
-        /* ...existing code... */
-
         .hero .pi-name {
             font-size: 1.2rem;
             font-weight: 500;
@@ -646,15 +633,27 @@
             z-index: 10;
         }
 
+        /* Fixed research figure images */
+        .research-figure {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         .research-figure img {
-            width: 100%;
-            height: auto;
+            width: 260px;
+            height: 260px;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
             border-radius: 16px;
+            display: block;
             transition: all 0.3s ease;
+            box-shadow: var(--shadow-medium);
         }
 
         .research-item:hover .research-figure img {
             transform: scale(1.05);
+            box-shadow: var(--shadow-heavy);
         }
 
         #publications {
@@ -961,6 +960,11 @@
             .research-item:nth-child(even) .research-figure {
                 order: -1;
             }
+
+            .research-figure img {
+                width: 200px;
+                height: 200px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1018,6 +1022,11 @@
 
             .contact-form {
                 padding: 2rem;
+            }
+
+            .research-figure img {
+                width: 180px;
+                height: 180px;
             }
         }
     </style>
@@ -1102,13 +1111,13 @@
                             We are pursuing further studies to understand such flux barriers.</p>
                     </div>
                     <div class="research-figure">
-                        <img src="./hero1.jpg" alt="Acetyl-CoA compartmentalization" width="260" height="260">
+                        <img src="./hero1.jpg" alt="Acetyl-CoA compartmentalization">
                     </div>
                 </div>
 
                 <div class="research-item fade-in slide-in-right">
                     <div class="research-figure">
-                        <img src="./hero3.jpg" alt="Metabolite biosensor concept" width="260" height="260">
+                        <img src="./hero3.jpg" alt="Metabolite biosensor concept">
                     </div>
                     <div class="research-text">
                         <h3>Metabolites & Gene Expression</h3>
@@ -1127,7 +1136,7 @@
                             and development.</p>
                     </div>
                     <div class="research-figure">
-                        <img src="./hero2.jpg" alt="Glycolytic gradient in mouse embryo" width="260" height="260">
+                        <img src="./hero2.jpg" alt="Glycolytic gradient in mouse embryo">
                     </div>
                 </div>
             </div>
@@ -1478,16 +1487,8 @@ This inquiry was sent from the Cellular Metabolism Lab website.
 
             setTimeout(typeWriter, 2000);
 
-            // Add parallax effect to research images
-            window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                const researchImages = document.querySelectorAll('.research-figure img');
-
-                researchImages.forEach((img, index) => {
-                    const rate = scrolled * -0.5;
-                    img.style.transform = `translateY(${rate}px)`;
-                });
-            });
+            // Add parallax effect to research images (removed the problematic scroll effect)
+            // The previous parallax effect was causing display issues
 
             // Add hover sound effect simulation (visual feedback)
             document.querySelectorAll('.btn, .team-card, .research-item').forEach(element => {
