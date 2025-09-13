@@ -77,6 +77,7 @@
         input[type="radio"]:disabled {
             color: #9ca3af; /* Gray-400 */
             border-color: #d1d5db;
+            cursor: not-allowed;
         }
         
         input[type="radio"]:disabled + span {
@@ -119,7 +120,7 @@
 
     <div class="container mx-auto max-w-2xl p-4 sm:p-6 lg:p-8">
         
-        <header class="text-center mb-8">
+        <header class="text-center mb-4">
              <div class="flex justify-center items-center gap-3 mb-2">
                  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-600"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                  <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">IB ACIO Reasoning Quiz</h1>
@@ -161,9 +162,13 @@
                     <p id="explanation-text" class="text-slate-600 prose prose-sm"></p>
                 </div>
 
-                <div id="navigation-buttons" class="mt-6 flex justify-end gap-4">
-                    <button id="skip-btn" class="font-semibold text-indigo-600 hover:text-indigo-800 transition-colors duration-200">Skip Question →</button>
-                    <button id="next-btn" class="hidden bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-transform transform hover:scale-105 active:scale-95">Next Question →</button>
+                <div id="navigation-buttons" class="mt-6 flex justify-between items-center gap-4">
+                    <button id="prev-btn" class="hidden bg-slate-200 text-slate-700 font-semibold py-2 px-6 rounded-lg hover:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 transition-transform transform active:scale-95">← Previous</button>
+                    <div class="flex-grow flex justify-end gap-4">
+                        <button id="clear-btn" class="font-semibold text-slate-600 hover:text-slate-800 transition-colors duration-200">Clear Selection</button>
+                        <button id="skip-btn" class="font-semibold text-indigo-600 hover:text-indigo-800 transition-colors duration-200">Skip Question →</button>
+                        <button id="next-btn" class="hidden bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-transform transform hover:scale-105 active:scale-95">Next Question →</button>
+                    </div>
                 </div>
             </div>
 
@@ -171,8 +176,12 @@
                  <div id="result-icon" class="mb-4"></div>
                 <h2 class="text-2xl font-bold text-slate-900">Quiz Complete!</h2>
                 <p class="text-lg mt-2 text-slate-600">Your final score is <span id="score" class="font-bold text-indigo-600 text-3xl">0</span> out of <span id="total-questions" class="font-bold text-3xl">200</span>.</p>
+                <p class="text-slate-500 mt-4">Total Time Taken: <span id="total-time-taken" class="font-semibold"></span></p>
                 <button id="restart-btn" class="mt-8 bg-indigo-600 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-transform transform hover:scale-105 active:scale-95">
                     Try Again
+                </button>
+                <button id="reappear-btn" class="mt-4 bg-slate-500 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 transition-transform transform hover:scale-105 active:scale-95">
+                    Reappear Exam
                 </button>
             </div>
             
@@ -395,6 +404,7 @@
         const scoreElement = document.getElementById('score');
         const totalQuestionsElement = document.getElementById('total-questions');
         const restartBtn = document.getElementById('restart-btn');
+        const reappearBtn = document.getElementById('reappear-btn');
         const progressBar = document.getElementById('progress-bar');
         const resultIcon = document.getElementById('result-icon');
         const questionJump = document.getElementById('question-jump');
@@ -402,11 +412,16 @@
         const timerElement = document.getElementById('timer');
         const scoreDisplay = document.getElementById('score-display');
         const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const clearBtn = document.getElementById('clear-btn');
+        const totalTimeTakenElement = document.getElementById('total-time-taken');
 
         let currentQuestionIndex = 0;
         let score = 0;
         let questionTimerInterval;
         let questionStartTime;
+        let quizStartTime;
+        let userAttempts = {}; // To store {selectedIndex, isCorrect}
 
         function populateJumpSelector() {
             questionJump.innerHTML = '';
@@ -421,24 +436,40 @@
         function loadState() {
             const savedIndex = localStorage.getItem('quizCurrentIndex');
             const savedScore = localStorage.getItem('quizScore');
-            currentQuestionIndex = savedIndex !== null ? parseInt(savedIndex, 10) : 0;
-            score = savedScore !== null ? parseInt(savedScore, 10) : 0;
+            const savedAttempts = localStorage.getItem('quizUserAttempts');
+            const savedStartTime = localStorage.getItem('quizStartTime');
+            
+            currentQuestionIndex = savedIndex ? parseInt(savedIndex, 10) : 0;
+            score = savedScore ? parseInt(savedScore, 10) : 0;
+            userAttempts = savedAttempts ? JSON.parse(savedAttempts) : {};
+            if (savedStartTime) {
+                quizStartTime = new Date(savedStartTime);
+            }
         }
 
         function saveState() {
             localStorage.setItem('quizCurrentIndex', currentQuestionIndex);
             localStorage.setItem('quizScore', score);
+            localStorage.setItem('quizUserAttempts', JSON.stringify(userAttempts));
+            if (quizStartTime) {
+                 localStorage.setItem('quizStartTime', quizStartTime.toISOString());
+            }
         }
 
         function clearState() {
             localStorage.removeItem('quizCurrentIndex');
             localStorage.removeItem('quizScore');
+            localStorage.removeItem('quizUserAttempts');
+            localStorage.removeItem('quizStartTime');
         }
 
         function startQuiz() {
             clearState();
             currentQuestionIndex = 0;
             score = 0;
+            userAttempts = {};
+            quizStartTime = new Date();
+            saveState();
             resultContainer.style.display = 'none';
             questionArea.style.display = 'block';
             loadQuestion();
@@ -446,8 +477,11 @@
         
         function resumeQuiz() {
             loadState();
+            if (!quizStartTime) {
+                 quizStartTime = new Date();
+                 saveState();
+            }
             if (currentQuestionIndex >= quizData.length) {
-                // If saved state is at the end, reset.
                 startQuiz();
             } else {
                 resultContainer.style.display = 'none';
@@ -458,7 +492,7 @@
         }
 
         function updateProgressBar() {
-            const progress = ((currentQuestionIndex) / quizData.length) * 100;
+            const progress = ((Object.keys(userAttempts).length) / quizData.length) * 100;
             progressBar.style.width = `${progress}%`;
         }
         
@@ -482,13 +516,17 @@
             questionArea.classList.remove('quiz-card-enter-active');
             questionArea.classList.add('quiz-card-enter');
             
-            nextBtn.classList.add('hidden');
-            skipBtn.classList.remove('hidden');
-
             clearInterval(questionTimerInterval);
             questionStartTime = new Date();
-            questionTimerInterval = setInterval(updateTimer, 1000);
-            updateTimer();
+            
+            const isAttempted = userAttempts[currentQuestionIndex] !== undefined;
+
+            if(!isAttempted){
+                 questionTimerInterval = setInterval(updateTimer, 1000);
+                 updateTimer();
+            } else {
+                timerElement.textContent = "Answered";
+            }
 
             setTimeout(() => {
                 if (currentQuestionIndex >= quizData.length) {
@@ -502,67 +540,107 @@
 
                 currentQuestion.options.forEach((option, index) => {
                     const optionElement = document.createElement('div');
-                    optionElement.classList.add('border', 'border-slate-300', 'p-4', 'rounded-lg', 'hover:bg-slate-100/80', 'transition-all', 'duration-200', 'cursor-pointer', 'transform', 'hover:scale-[1.03]', 'hover:shadow-md');
+                    optionElement.classList.add('border', 'border-slate-300', 'p-4', 'rounded-lg', 'transition-all', 'duration-200');
                     optionElement.innerHTML = `
-                        <label for="option${index}" class="flex items-center w-full cursor-pointer">
+                        <label for="option${index}" class="flex items-center w-full">
                             <input type="radio" id="option${index}" name="option" value="${index}" class="form-radio text-indigo-600 focus:ring-indigo-500">
                             <span class="ml-3 text-slate-700 font-medium">${option}</span>
                         </label>
                     `;
                     optionsContainer.appendChild(optionElement);
-                    
-                    optionElement.addEventListener('click', () => {
-                        const radio = optionElement.querySelector('input[type="radio"]');
-                        if (!radio.disabled) {
-                           radio.checked = true;
-                           checkAnswer(index);
-                        }
-                    });
+
+                    if (!isAttempted) {
+                        optionElement.classList.add('hover:bg-slate-100/80', 'cursor-pointer', 'transform', 'hover:scale-[1.03]', 'hover:shadow-md');
+                        optionElement.addEventListener('click', () => {
+                            const radio = optionElement.querySelector('input[type="radio"]');
+                            if (!radio.disabled) {
+                               radio.checked = true;
+                               checkAnswer(index);
+                            }
+                        });
+                    }
                 });
+
+                if (isAttempted) {
+                    showAttemptedState();
+                } else {
+                    nextBtn.classList.add('hidden');
+                    skipBtn.classList.remove('hidden');
+                    clearBtn.classList.remove('hidden');
+                }
+                
+                prevBtn.classList.toggle('hidden', currentQuestionIndex === 0);
 
                 questionArea.classList.add('quiz-card-enter-active');
             }, 250); 
         }
 
+        function showAttemptedState() {
+            const attempt = userAttempts[currentQuestionIndex];
+            const { selectedIndex, isCorrect } = attempt;
+            const options = optionsContainer.children;
+            const currentQuestion = quizData[currentQuestionIndex];
+            
+            Array.from(options).forEach((opt, idx) => {
+                const radio = opt.querySelector('input');
+                radio.disabled = true;
+                opt.classList.add('cursor-not-allowed');
+
+                if (idx === selectedIndex) {
+                    radio.checked = true;
+                    if (isCorrect) {
+                        opt.classList.add('correct');
+                        opt.querySelector('label').classList.add('correct-label');
+                    } else {
+                        opt.classList.add('incorrect');
+                        opt.querySelector('label').classList.add('incorrect-label');
+                    }
+                }
+                if (idx === currentQuestion.answer && !isCorrect) {
+                    opt.classList.add('correct');
+                }
+            });
+
+            document.getElementById('explanation-text').innerHTML = currentQuestion.explanation;
+            document.getElementById('explanation-container').style.display = 'block';
+
+            nextBtn.classList.remove('hidden');
+            skipBtn.classList.add('hidden');
+            clearBtn.classList.add('hidden');
+        }
+
+
         function checkAnswer(selectedIndex) {
             clearInterval(questionTimerInterval);
             const currentQuestion = quizData[currentQuestionIndex];
             const correctIndex = currentQuestion.answer;
-            const options = optionsContainer.children;
+            const isCorrect = selectedIndex === correctIndex;
 
-            skipBtn.classList.add('hidden');
-            nextBtn.classList.remove('hidden');
-
-            Array.from(options).forEach((opt) => {
-                opt.querySelector('input').disabled = true;
-                opt.classList.remove('hover:bg-slate-100/80', 'hover:scale-[1.03]', 'hover:shadow-md');
-                opt.classList.add('cursor-not-allowed');
-            });
-
-            if (selectedIndex === correctIndex) {
+            if (isCorrect) {
                 score++;
                 updateScoreDisplay();
-                options[selectedIndex].classList.add('correct');
-                options[selectedIndex].querySelector('label').classList.add('correct-label');
-            } else {
-                options[selectedIndex].classList.add('incorrect');
-                options[selectedIndex].querySelector('label').classList.add('incorrect-label');
-                options[correctIndex].classList.add('correct');
             }
 
-            document.getElementById('explanation-text').innerHTML = currentQuestion.explanation;
-            document.getElementById('explanation-container').style.display = 'block';
+            userAttempts[currentQuestionIndex] = { selectedIndex, isCorrect };
             saveState();
+            showAttemptedState();
         }
 
         function showResults() {
-            clearState();
             questionArea.style.display = 'none';
             resultContainer.style.display = 'block';
             resultContainer.classList.remove('quiz-card-enter');
             resultContainer.classList.add('quiz-card-enter-active');
             scoreElement.textContent = score;
             totalQuestionsElement.textContent = quizData.length;
+
+            const quizEndTime = new Date();
+            const totalElapsed = Math.floor((quizEndTime - quizStartTime) / 1000);
+            const minutes = String(Math.floor(totalElapsed / 60)).padStart(2, '0');
+            const seconds = String(totalElapsed % 60).padStart(2, '0');
+            totalTimeTakenElement.textContent = `${minutes}m ${seconds}s`;
+
+            clearState();
 
             const percentage = (score / quizData.length) * 100;
             if (percentage >= 80) {
@@ -576,13 +654,21 @@
 
         // Event Listeners
         restartBtn.addEventListener('click', startQuiz);
+        reappearBtn.addEventListener('click', startQuiz);
         
         nextBtn.addEventListener('click', () => {
-             currentQuestionIndex++;
-             if (currentQuestionIndex < quizData.length) {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizData.length) {
                 loadQuestion();
             } else {
                 showResults();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
             }
         });
 
@@ -596,9 +682,13 @@
             }
         });
 
+        clearBtn.addEventListener('click', () => {
+            const radios = document.querySelectorAll('input[name="option"]');
+            radios.forEach(radio => radio.checked = false);
+        });
+
         questionJump.addEventListener('change', (e) => {
             currentQuestionIndex = parseInt(e.target.value, 10);
-            saveState();
             loadQuestion();
         });
 
